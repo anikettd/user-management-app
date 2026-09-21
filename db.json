@@ -1,0 +1,26 @@
+{
+  "users": [
+    {
+      "id": "3",
+      "name": "Bob Johnson",
+      "email": "bob@example.com",
+      "age": 28,
+      "isActive": true
+    },
+    {
+      "id": "xGXoGFbn0b0",
+      "name": "Aniket Dubey",
+      "email": "anikettd.9@gmail.com",
+      "age": 25,
+      "isActive": true
+    },
+    {
+      "id": "BB2vp7uisFA",
+      "name": "Zoro Roronoa",
+      "email": "zoro@2001",
+      "age": 25,
+      "isActive": true
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

@@ -1,0 +1,52 @@
+<div class="home-container">
+  <div class="hero">
+    <h1>🎯 User Management System</h1>
+    <p>Manage your users efficiently with our Angular app</p>
+  </div>
+
+  <div *ngIf="loading" class="loading">⏳ Loading stats...</div>
+  <div *ngIf="error" class="error">❌ {{ error }}</div>
+
+  <div *ngIf="!loading" class="stats-container">
+    <div class="stat-card total">
+      <div class="stat-icon">👥</div>
+      <div class="stat-info">
+        <h3>{{ totalUsers }}</h3>
+        <p>Total Users</p>
+      </div>
+    </div>
+    <div class="stat-card active">
+      <div class="stat-icon">✅</div>
+      <div class="stat-info">
+        <h3>{{ activeUsers }}</h3>
+        <p>Active Users</p>
+      </div>
+    </div>
+    <div class="stat-card inactive">
+      <div class="stat-icon">❌</div>
+      <div class="stat-info">
+        <h3>{{ inactiveUsers }}</h3>
+        <p>Inactive Users</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <a routerLink="/users" class="btn btn-primary">👥 View Users</a>
+    <a routerLink="/users/add" class="btn btn-success">➕ Add New User</a>
+    <a routerLink="/about" class="btn btn-info">📖 About</a>
+    <a routerLink="/contact" class="btn btn-secondary">📞 Contact</a>
+  </div>
+
+  <div *ngIf="!loading && users.length > 0" class="recent-users">
+    <h2>📋 Recent Users</h2>
+    <div class="recent-list">
+      <div *ngFor="let user of users.slice(0, 3)" class="recent-item">
+        <span class="user-name">{{ user.name }}</span>
+        <span class="user-email">{{ user.email }}</span>
+        <span *ngIf="user.isActive" class="status active">✅</span>
+        <span *ngIf="!user.isActive" class="status inactive">❌</span>
+      </div>
+    </div>
+  </div>
+</div>

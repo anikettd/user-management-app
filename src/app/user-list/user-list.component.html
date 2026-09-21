@@ -1,0 +1,54 @@
+<div class="user-list-container">
+  <h2>👥 User List</h2>
+
+  <!-- Search Bar -->
+  <div class="search-bar">
+    <input 
+      type="text" 
+      [(ngModel)]="searchTerm" 
+      (input)="search()"
+      placeholder="🔍 Search by name or email..."
+      class="search-input">
+    <button *ngIf="searchTerm" (click)="clearSearch()" class="clear-btn">✖</button>
+  </div>
+
+  <!-- Results count -->
+  <p class="results-count" *ngIf="searchTerm">
+    Found {{ filteredUsers.length }} user(s) matching "{{ searchTerm }}"
+  </p>
+
+  <!-- Loading State -->
+  <div *ngIf="loading" class="loading">⏳ Loading users...</div>
+
+  <!-- Error State -->
+  <div *ngIf="error" class="error">❌ {{ error }}</div>
+
+  <!-- User List -->
+  <div *ngIf="!loading && !error" class="user-cards">
+    
+    <!-- No Users Message -->
+    <div *ngIf="filteredUsers.length === 0" class="no-users">
+      <span *ngIf="searchTerm">No users match "{{ searchTerm }}"</span>
+      <span *ngIf="!searchTerm">No users found. Add one below!</span>
+    </div>
+
+    <!-- User Cards -->
+    <div *ngFor="let user of filteredUsers" class="user-card">
+      <div class="user-info">
+        <h3>{{ user.name }}</h3>
+        <p><strong>📧 Email:</strong> {{ user.email }}</p>
+        <p><strong>🎂 Age:</strong> {{ user.age }}</p>
+        <p *ngIf="user.isActive" class="status-active">✅ Active</p>
+        <p *ngIf="!user.isActive" class="status-inactive">❌ Inactive</p>
+      </div>
+      <div class="user-actions">
+        <a [routerLink]="['/users/edit', user.id]" class="edit-btn">✏️ Edit</a>
+        <button (click)="deleteUser(user.id)" class="delete-btn">🗑️ Delete</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Add User Button -->
+  <a routerLink="/users/add" class="add-btn">➕ Add New User</a>
+</div>
